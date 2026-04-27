@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehedi Chowdhury — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #06080f;
+  --bg2: #0b0e1a;
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-line: rgba(201,168,76,0.25);
+  --text: #f0ece4;
+  --muted: #7a7468;
+  --muted2: #4a4640;
+  --card: #0e1120;
+  --card2: #111525;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── CURSOR ── */
+.cur-dot, .cur-ring {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+}
+.cur-dot {
+  width: 6px; height: 6px;
+  background: var(--gold2);
+}
+.cur-ring {
+  width: 32px; height: 32px;
+  border: 1px solid var(--gold-line);
+  transition: width .3s, height .3s, border-color .3s;
+}
+body:has(a:hover) .cur-ring,
+body:has(button:hover) .cur-ring {
+  width: 48px; height: 48px;
+  border-color: var(--gold);
+}
+
+/* ── NOISE + GRID ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.022; pointer-events: none; z-index: 1000;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 28px 56px;
+  transition: all .4s;
+}
+nav.solid {
+  padding: 18px 56px;
+  background: rgba(6,8,15,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--gold-line);
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color .25s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  align-items: center;
+  padding: 120px 56px 80px;
+  gap: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background orbs */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+  top: 50%; left: 45%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
+.hero-left { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 36px;
+  animation: fadeUp .9s ease both;
+}
+.eyebrow-line {
+  width: 48px; height: 1px;
+  background: var(--gold);
+}
+.eyebrow-text {
+  font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 86px);
+  font-weight: 300; line-height: 1.05;
+  letter-spacing: 1px;
+  animation: fadeUp .9s ease .1s both;
+}
+.hero-title em {
+  font-style: italic; color: var(--gold2);
+  display: block;
+}
+
+.hero-subtitle {
+  margin-top: 28px;
+  font-size: 13px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+  animation: fadeUp .9s ease .2s both;
+}
+
+.hero-bio {
+  margin-top: 32px;
+  font-size: 15px; line-height: 1.9;
+  color: var(--muted); max-width: 440px;
+  animation: fadeUp .9s ease .3s both;
+}
+
+.hero-cta {
+  margin-top: 48px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp .9s ease .4s both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: #060810;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none; font-weight: 500;
+  transition: all .3s;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px;
+  border: 1px solid var(--gold-line);
+  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none;
+  transition: all .3s;
+}
+.btn-outline:hover { border-color: var(--gold); background: var(--gold-dim); transform: translateY(-2px); }
+
+/* ── PHOTO FRAME ── */
+.hero-right {
+  position: relative; z-index: 2;
+  animation: fadeIn 1.2s ease .3s both;
+}
+.photo-wrap {
+  position: relative;
+  width: 100%; max-width: 420px;
+  margin: 0 auto;
+}
+/* Decorative corners */
+.photo-wrap::before, .photo-wrap::after {
+  content: '';
+  position: absolute;
+  width: 60px; height: 60px;
+  border-color: var(--gold);
+  border-style: solid;
+  z-index: 3;
+}
+.photo-wrap::before {
+  top: -16px; left: -16px;
+  border-width: 2px 0 0 2px;
+}
+.photo-wrap::after {
+  bottom: -16px; right: -16px;
+  border-width: 0 2px 2px 0;
+}
+.photo-inner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+.photo-inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(6,8,15,0.7) 100%
+  );
+  z-index: 2;
+}
+.photo-inner img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+  filter: contrast(1.05) saturate(0.9);
+  transition: transform .8s ease;
+}
+.photo-wrap:hover .photo-inner img { transform: scale(1.04); }
+
+/* Gold side accent */
+.photo-accent {
+  position: absolute;
+  left: -24px; top: 20%;
+  width: 3px; height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+.photo-name-tag {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 28px 24px;
+  z-index: 3;
+}
+.photo-name-tag span {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 600;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.photo-name-tag small {
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold2);
+}
+
+/* Floating badge */
+.badge {
+  position: absolute;
+  right: -28px; top: 80px;
+  width: 88px; height: 88px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  animation: spin 20s linear infinite;
+  z-index: 4;
+}
+.badge span {
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #060810; font-weight: 600;
+  line-height: 1.3;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--card);
+  border-top: 1px solid var(--gold-line);
+  border-bottom: 1px solid var(--gold-line);
+  display: grid; grid-template-columns: repeat(4,1fr);
+  position: relative; z-index: 2;
+}
+.stat-item {
+  padding: 36px 48px;
+  border-right: 1px solid var(--gold-line);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; font-weight: 300;
+  color: var(--gold);
+}
+.stat-l {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ── SECTION SHARED ── */
+section { position: relative; z-index: 2; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 56px; }
+
+.sec-header {
+  display: flex; align-items: center; gap: 24px;
+  margin-bottom: 64px;
+}
+.sec-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--gold); letter-spacing: 2px;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 300;
+  letter-spacing: 2px;
+}
+.sec-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--gold-line), transparent);
+}
+
+/* ── ABOUT SECTION ── */
+.about { padding: 120px 0; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px; align-items: start;
+}
+.about-p {
+  font-size: 16px; line-height: 2;
+  color: var(--muted); margin-bottom: 24px;
+}
+.about-p strong { color: var(--text); font-weight: 500; }
+
+.traits { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
+.trait {
+  border: 1px solid var(--gold-line);
+  padding: 7px 16px;
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.about-visual {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.info-row {
+  display: flex; align-items: center;
+  gap: 20px; padding: 20px 24px;
+  background: var(--card2);
+  border-left: 2px solid var(--gold);
+  transition: background .3s;
+}
+.info-row:hover { background: var(--card); }
+.info-label {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+  min-width: 80px;
+}
+.info-val { font-size: 14px; color: var(--text); }
+
+/* ── SOCIAL SECTION ── */
+.socials { padding: 0 0 120px; }
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px;
+}
+.soc-card {
+  display: block; text-decoration: none;
+  background: var(--card);
+  padding: 40px 36px;
+  position: relative; overflow: hidden;
+  transition: all .35s ease;
+  border: 1px solid transparent;
+}
+.soc-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--platform-color, var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease;
+}
+.soc-card:hover { background: var(--card2); border-color: var(--gold-line); transform: translateY(-4px); }
+.soc-card:hover::before { transform: scaleX(1); }
+
+.soc-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 28px;
+}
+.soc-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg); border: 1px solid var(--muted2);
+  border-radius: 50%;
+  transition: border-color .3s;
+}
+.soc-card:hover .soc-icon { border-color: var(--platform-color, var(--gold)); }
+.soc-arrow {
+  font-size: 18px; color: var(--muted2);
+  transition: all .3s;
+}
+.soc-card:hover .soc-arrow {
+  color: var(--platform-color, var(--gold));
+  transform: translate(4px,-4px);
+}
+.soc-platform {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 8px;
+}
+.soc-handle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--text); letter-spacing: 1px;
+  transition: color .3s;
+}
+.soc-card:hover .soc-handle { color: var(--platform-color, var(--gold)); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--card);
+  border-top: 1px solid var(--gold-line);
+  padding: 60px 56px;
+}
+.footer-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 40px;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  letter-spacing: 8px; text-transform: uppercase;
+  color: var(--gold);
+}
+.footer-ornament {
+  font-size: 24px; color: var(--gold-line);
+}
+.footer-copy {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--muted); text-align: right;
+}
+.footer-sub {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--muted2); margin-top: 6px; text-align: right;
+}
+
+/* ── ANIM ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 120px 32px 60px; gap: 60px; }
+  .hero-right { display: flex; justify-content: center; }
+  .photo-wrap { max-width: 320px; }
+  .badge { right: -16px; }
+  nav { padding: 24px 32px; }
+  nav.solid { padding: 16px 32px; }
+  .container { padding: 0 32px; }
+  footer { padding: 48px 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-ornament { display: none; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .stat-item:nth-child(2) { border-right: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .social-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .footer-copy, .footer-sub { text-align: center; }
+  .hero { padding-top: 100px; }
+}
+@media (max-width: 480px) {
+  .social-grid { grid-template-columns: 1fr; }
+  .hero { padding: 100px 20px 60px; }
+  .container { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cur-dot" id="cDot"></div>
+<div class="cur-ring" id="cRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">Mehedi</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Content Creator · Developer</span>
+    </div>
+    <h1 class="hero-title">
+      Mehedi<br>
+      <em>Chowdhury</em>
+    </h1>
+    <p class="hero-subtitle">Digital Creative · Bangladesh</p>
+    <p class="hero-bio">
+      Passionate about creating meaningful digital experiences —  
+      from engaging content across platforms to building  
+      open-source projects that make a difference.
+    </p>
+    <div class="hero-cta">
+      <a href="#connect" class="btn-primary">Connect With Me ↓</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-wrap">
+      <div class="photo-accent"></div>
+      <div class="photo-inner">
+        <img src="https://i.ibb.co.com/chdMk7Qf/IMG-20260427-WA0007.jpg" alt="Mehedi Chowdhury" loading="eager">
+        <div class="photo-name-tag">
+          <small>Portfolio 2025</small>
+          <span>Mehedi</span>
+        </div>
+      </div>
+      <div class="badge"><span>BD 🇧🇩 Creator</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-n">6+</div>
+    <div class="stat-l">Platforms</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-n">BD</div>
+    <div class="stat-l">Based In</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-n">∞</div>
+    <div class="stat-l">Creativity</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-n">24/7</div>
+    <div class="stat-l">Active</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">— 01</span>
+      <h2 class="sec-title">About Me</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="about-p">
+          Hey, I'm <strong>Mehedi Chowdhury</strong> — a passionate content creator, developer, and digital explorer from Bangladesh. 
+          I love crafting experiences that connect people and spark ideas.
+        </p>
+        <p class="about-p">
+          Whether it's an engaging video on YouTube, a viral TikTok, or an open-source repository on GitHub — 
+          I pour creativity and intention into everything I build.
+        </p>
+        <p class="about-p">
+          My work lives at the intersection of <strong>creativity and technology</strong>, 
+          and I'm always exploring new mediums to tell stories and solve problems.
+        </p>
+        <div class="traits">
+          <span class="trait">Content Creation</span>
+          <span class="trait">Development</span>
+          <span class="trait">Digital Media</span>
+          <span class="trait">Bangladesh</span>
+          <span class="trait">Open Source</span>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="info-row">
+          <span class="info-label">Full Name</span>
+          <span class="info-val">Mehedi Chowdhury</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-val">Bangladesh 🇧🇩</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Focus</span>
+          <span class="info-val">Content & Development</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Platforms</span>
+          <span class="info-val">6 Active Channels</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Project</span>
+          <span class="info-val">Maisha Project 2.0</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <span class="info-val" style="color:var(--gold)">● Available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL / CONNECT -->
+<section class="socials" id="connect">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">— 02</span>
+      <h2 class="sec-title">Find Me On</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="social-grid">
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/Mehedi.Choudhury31" target="_blank" rel="noopener"
+         class="soc-card reveal" style="--platform-color:#1877f2">
+        <div class="soc-top">
+          <div class="soc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877f2">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <span class="soc-arrow">↗</span>
+        </div>
+        <div class="soc-platform">Facebook</div>
+        <div class="soc-handle">Mehedi.Choudhury31</div>
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@mehedi__offical_____2.00" target="_blank" rel="noopener"
+         class="soc-card reveal" style="--platform-color:#ff0000">
+        <div class="soc-top">
+          <div class="soc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <span class="soc-arrow">↗</span>
+        </div>
+        <div class="soc-platform">YouTube</div>
+        <div class="soc-handle">mehedi__offical</div>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@mehedi__khan__31" target="_blank" rel="noopener"
+         class="soc-card reveal" style="--platform-color:#69c9d0">
+        <div class="soc-top">
+          <div class="soc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
+ 
