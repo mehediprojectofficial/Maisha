@@ -177,7 +177,6 @@ nav.solid {
 .photo-frame {
   position: relative; width: 100%; max-width: 400px; margin: 0 auto;
 }
-/* Corner ornaments */
 .photo-frame::before, .photo-frame::after {
   content: ''; position: absolute;
   width: 56px; height: 56px;
@@ -205,7 +204,6 @@ nav.solid {
 }
 .photo-frame:hover .photo-box img { transform: scale(1.05); }
 
-/* Left accent line */
 .ph-accent {
   position: absolute;
   left: -22px; top: 15%; bottom: 15%;
@@ -213,7 +211,6 @@ nav.solid {
   background: linear-gradient(to bottom, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
 }
 
-/* Name tag inside photo */
 .ph-tag {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 32px 28px 26px; z-index: 3;
@@ -228,7 +225,6 @@ nav.solid {
   font-size: 32px; font-weight: 600; color: #fff; letter-spacing: 2px;
 }
 
-/* Spinning badge */
 .ph-badge {
   position: absolute; right: -24px; top: 60px;
   width: 84px; height: 84px;
@@ -344,7 +340,6 @@ section { position: relative; z-index: 2; }
   transition: all .35s ease;
   border: 1px solid transparent;
 }
-/* bottom reveal line */
 .soc-card::before {
   content: ''; position: absolute;
   bottom: 0; left: 0; width: 100%; height: 2px;
@@ -352,7 +347,6 @@ section { position: relative; z-index: 2; }
   transform: scaleX(0); transform-origin: left;
   transition: transform .35s ease;
 }
-/* subtle glow on hover */
 .soc-card::after {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(ellipse at bottom left, rgba(201,168,76,0.04), transparent 70%);
@@ -399,8 +393,23 @@ section { position: relative; z-index: 2; }
   font-size: 21px; font-weight: 400;
   color: var(--text); letter-spacing: 1px;
   transition: color .3s;
+  margin-bottom: 10px;
 }
 .soc-card:hover .soc-handle { color: var(--pc, var(--gold2)); }
+
+/* Link display */
+.soc-link {
+  font-size: 10px; letter-spacing: 0.5px;
+  color: var(--muted2);
+  word-break: break-all;
+  transition: color .3s;
+  position: relative; z-index: 3;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.soc-card:hover .soc-link { color: var(--muted); }
 
 /* FOOTER */
 footer {
@@ -421,14 +430,6 @@ footer {
 .foot-r { text-align: right; }
 .foot-copy { font-size: 11px; letter-spacing: 2px; color: var(--muted); }
 .foot-sub { font-size: 10px; letter-spacing: 2px; color: var(--muted2); margin-top: 5px; }
-
-/* DIVIDER ORNAMENT */
-.orn {
-  text-align: center; padding: 0 0 0;
-  color: var(--gold-line); font-size: 22px;
-  letter-spacing: 16px; margin-bottom: -20px;
-  position: relative; z-index: 2;
-}
 
 /* ANIMATIONS */
 @keyframes fadeUp {
@@ -536,7 +537,7 @@ footer {
 <!-- ══ STATS BAR ══ -->
 <div class="stats-bar">
   <div class="st-item reveal">
-    <div class="st-n">6+</div>
+    <div class="st-n">8+</div>
     <div class="st-l">Platforms</div>
   </div>
   <div class="st-item reveal">
@@ -601,7 +602,7 @@ footer {
         </div>
         <div class="a-row">
           <span class="a-lbl">Platforms</span>
-          <span class="a-val">6 Active Channels</span>
+          <span class="a-val">8 Active Channels</span>
         </div>
         <div class="a-row">
           <span class="a-lbl">Project</span>
@@ -626,6 +627,7 @@ footer {
     </div>
     <div class="soc-grid">
 
+      <!-- Facebook -->
       <a href="https://www.facebook.com/Mehedi.Choudhury31"
          target="_blank" rel="noopener"
          class="soc-card reveal" style="--pc:#1877f2">
@@ -639,8 +641,10 @@ footer {
         </div>
         <div class="soc-plat">Facebook</div>
         <div class="soc-handle">Mehedi.Choudhury31</div>
+        <span class="soc-link">facebook.com/Mehedi.Choudhury31</span>
       </a>
 
+      <!-- YouTube -->
       <a href="https://www.youtube.com/@mehedi__offical_____2.00"
          target="_blank" rel="noopener"
          class="soc-card reveal" style="--pc:#ff0000">
@@ -654,8 +658,10 @@ footer {
         </div>
         <div class="soc-plat">YouTube</div>
         <div class="soc-handle">mehedi__offical</div>
+        <span class="soc-link">youtube.com/@mehedi__offical_____2.00</span>
       </a>
 
+      <!-- TikTok -->
       <a href="https://www.tiktok.com/@mehedi__khan__31"
          target="_blank" rel="noopener"
          class="soc-card reveal" style="--pc:#69c9d0">
@@ -669,8 +675,10 @@ footer {
         </div>
         <div class="soc-plat">TikTok</div>
         <div class="soc-handle">mehedi__khan__31</div>
+        <span class="soc-link">tiktok.com/@mehedi__khan__31</span>
       </a>
 
+      <!-- GitHub -->
       <a href="https://github.com/mehediprojectofficial/____Maisha_____project___2.0.git"
          target="_blank" rel="noopener"
          class="soc-card reveal" style="--pc:#e6edf3">
@@ -684,8 +692,10 @@ footer {
         </div>
         <div class="soc-plat">GitHub</div>
         <div class="soc-handle">Maisha Project 2.0</div>
+        <span class="soc-link">github.com/mehediprojectofficial</span>
       </a>
 
+      <!-- Instagram -->
       <a href="https://www.instagram.com/mehedi___chowdhury______2.0"
          target="_blank" rel="noopener"
          class="soc-card reveal" style="--pc:#e1306c">
@@ -706,8 +716,10 @@ footer {
         </div>
         <div class="soc-plat">Instagram</div>
         <div class="soc-handle">mehedi___chowdhury</div>
+        <span class="soc-link">instagram.com/mehedi___chowdhury______2.0</span>
       </a>
 
+      <!-- Telegram -->
       <a href="https://t.me/maisha_project_931"
          target="_blank" rel="noopener"
          class="soc-card reveal" style="--pc:#2ca5e0">
@@ -721,6 +733,41 @@ footer {
         </div>
         <div class="soc-plat">Telegram</div>
         <div class="soc-handle">maisha_project_931</div>
+        <span class="soc-link">t.me/maisha_project_931</span>
+      </a>
+
+      <!-- Twitter / X -->
+      <a href="https://x.com/miraz56387"
+         target="_blank" rel="noopener"
+         class="soc-card reveal" style="--pc:#e7e9ea">
+        <div class="soc-top">
+          <div class="soc-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#e7e9ea">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.848L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <span class="soc-arr">↗</span>
+        </div>
+        <div class="soc-plat">Twitter / X</div>
+        <div class="soc-handle">@miraz56387</div>
+        <span class="soc-link">x.com/miraz56387</span>
+      </a>
+
+      <!-- Snapchat -->
+      <a href="https://www.snapchat.com/add/meheid.khan31"
+         target="_blank" rel="noopener"
+         class="soc-card reveal" style="--pc:#FFFC00">
+        <div class="soc-top">
+          <div class="soc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFC00">
+              <path d="M12.017 0C8.396 0 7.962.016 6.741.07 5.522.124 4.668.333 3.92.63a5.918 5.918 0 0 0-2.14 1.392A5.918 5.918 0 0 0 .388 4.163C.091 4.911-.118 5.765-.172 6.984-.226 8.205-.242 8.639-.242 12.26c0 3.621.016 4.055.07 5.276.054 1.219.263 2.073.56 2.821a5.918 5.918 0 0 0 1.392 2.14 5.918 5.918 0 0 0 2.14 1.392c.748.297 1.602.506 2.821.56 1.221.054 1.655.07 5.276.07 3.621 0 4.055-.016 5.276-.07 1.219-.054 2.073-.263 2.821-.56a5.918 5.918 0 0 0 2.14-1.392 5.918 5.918 0 0 0 1.392-2.14c.297-.748.506-1.602.56-2.821.054-1.221.07-1.655.07-5.276 0-3.621-.016-4.055-.07-5.276-.054-1.219-.263-2.073-.56-2.821a5.918 5.918 0 0 0-1.392-2.14A5.918 5.918 0 0 0 20.114.63C19.366.333 18.512.124 17.293.07 16.072.016 15.638 0 12.017 0zm0 2.16c3.562 0 3.983.014 5.388.067 1.3.059 2.006.276 2.476.459.622.242 1.066.531 1.532.997.466.466.755.91.997 1.532.183.47.4 1.176.459 2.476.053 1.405.067 1.826.067 5.388 0 3.562-.014 3.983-.067 5.388-.059 1.3-.276 2.006-.459 2.476-.242.622-.531 1.066-.997 1.532a4.105 4.105 0 0 1-1.532.997c-.47.183-1.176.4-2.476.459-1.405.053-1.826.067-5.388.067-3.562 0-3.983-.014-5.388-.067-1.3-.059-2.006-.276-2.476-.459a4.105 4.105 0 0 1-1.532-.997 4.105 4.105 0 0 1-.997-1.532c-.183-.47-.4-1.176-.459-2.476C2.174 16.243 2.16 15.822 2.16 12.26c0-3.562.014-3.983.067-5.388.059-1.3.276-2.006.459-2.476.242-.622.531-1.066.997-1.532a4.105 4.105 0 0 1 1.532-.997c.47-.183 1.176-.4 2.476-.459 1.405-.053 1.826-.067 5.326-.067zm0 3.68a6.42 6.42 0 1 0 0 12.84 6.42 6.42 0 0 0 0-12.84zm0 10.58a4.16 4.16 0 1 1 0-8.32 4.16 4.16 0 0 1 0 8.32zm8.16-10.85a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+            </svg>
+          </div>
+          <span class="soc-arr">↗</span>
+        </div>
+        <div class="soc-plat">Snapchat</div>
+        <div class="soc-handle">meheid.khan31</div>
+        <span class="soc-link">snapchat.com/add/meheid.khan31</span>
       </a>
 
     </div>
